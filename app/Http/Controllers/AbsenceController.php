@@ -89,8 +89,12 @@ class AbsenceController extends Controller
         $result = array_map(function($absence) {
             $member = $this->getMemberByUserId($absence['userId']);
             return [
+                'id' => $absence['id'],
                 'member' => $member,  // Include member object
                 'type' => $absence['type'],
+                'confirmedAt' => $absence['confirmedAt'],
+                'createdAt' => $absence['createdAt'],
+                'rejectedAt' => $absence['rejectedAt'],
                 'startDate' => $absence['startDate'],
                 'endDate' => $absence['endDate'],
                 'memberNote' => $absence['memberNote'] ?: null,
