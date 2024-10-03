@@ -25,11 +25,11 @@ class AbsenceController extends Controller
     private function getStatus($absence): string
     {
         if (!empty($absence['rejectedAt'])) {
-            return 'Rejected';
+            return 'rejected';
         } elseif (!empty($absence['confirmedAt'])) {
-            return 'Confirmed';
+            return 'confirmed';
         } else {
-            return 'Requested';
+            return 'requested';
         }
     }
 
