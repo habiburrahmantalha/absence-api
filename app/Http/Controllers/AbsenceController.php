@@ -48,6 +48,7 @@ class AbsenceController extends Controller
     public function index(Request $request): JsonResponse
     {
         $type = $request->query('type');
+        $status = $request->query('status');
         $startDate = $request->query('startDate');
         $endDate = $request->query('endDate');
         $page = $request->query('page', 1);
@@ -59,6 +60,12 @@ class AbsenceController extends Controller
         if ($type) {
             $filteredAbsences = array_filter($filteredAbsences, function($absence) use ($type) {
                 return $absence['type'] === $type;
+            });
+        }
+        // Filter by status if provided
+        if ($status) {
+            $filteredAbsences = array_filter($filteredAbsences, function($absence) use ($status) {
+                return $this->getStatus($absence) === $status;
             });
         }
 
